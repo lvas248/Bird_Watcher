@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "./App"
 import React, { useState } from 'react'
+import { useHistory, NavLink } from 'react-router-dom'
 import { Form, Button, Input, Label, FormGroup } from 'reactstrap'
 
 
@@ -10,6 +11,8 @@ function Login(){
 
     const [ loginObj, setLoginObj ] = useState({username: '', password: ''}) 
     const [ error, setError ] = useState({})
+
+    const history = useHistory()
 
     function updateLoginObj(key, value){
         const copy = {...loginObj}
@@ -27,7 +30,10 @@ function Login(){
             body: JSON.stringify(loginObj)
         })
         .then(res => {
-            if(res.ok) res.json().then(data => setUser(data))
+            if(res.ok) res.json().then(data => {
+                setUser(data)
+                history.push('/my-notes')
+            })
             else res.json().then( data => setError(data))
             
         })
@@ -61,7 +67,7 @@ function Login(){
 
             { error ? <p className='error'>{error.error}</p> : null}
 
-            <p>New to Bird Watcher? Signup here</p>
+            <p>New to Bird Watcher? Signup <NavLink to='/signup'>here</NavLink></p>
 
         </div>
 

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Form, Button, Input, Label, FormGroup } from 'reactstrap'
 import { useContext } from 'react'
 import { UserContext } from './App'
+import { NavLink } from 'react-router-dom'
 
 
 function Signup(){
@@ -70,6 +71,8 @@ function Signup(){
                     </FormGroup>
 
                 </Form>
+
+                <p>Back to <NavLink to='/Login'>Login</NavLink></p>
 
                 { errors.length > 0 ? renderErrors : null}
 
