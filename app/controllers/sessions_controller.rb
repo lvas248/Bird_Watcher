@@ -6,9 +6,8 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: user, status: :created
     else
-      render json: { error: 'Invalid Username or Password'}
+      render json: { error: 'Invalid Username or Password'}, status: :unprocessable_entity
     end
-
   end
 
   def destroy
@@ -16,8 +15,7 @@ class SessionsController < ApplicationController
       head :no_content
   end
 
-  private
-
+  
 
 
 end

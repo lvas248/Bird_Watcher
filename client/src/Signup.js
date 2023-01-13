@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button, Input, Label } from 'reactstrap'
+import { Form, Button, Input, Label, FormGroup } from 'reactstrap'
 import { useContext } from 'react'
 import { UserContext } from './App'
 
@@ -9,7 +9,7 @@ function Signup(){
 
     const defaultObj = { username: '', password: '', password_confirmation: ''}
 
-    const [ setUser ] = useContext(UserContext)
+    const [ , setUser ] = useContext(UserContext)
     const [ signupObj, setSignupObj ] = useState(defaultObj)
     const [ errors, setErrors ] = useState([])
 
@@ -20,6 +20,13 @@ function Signup(){
         copy[key] = value
         setSignupObj(copy)
     }
+
+  
+
+    const renderErrors = errors.map( e => {
+        return <p key={e} className='error'>{e}</p>
+    })
+
 
     function submitSignup(e){
         e.preventDefault()
@@ -35,29 +42,32 @@ function Signup(){
             else res.json().then( data => setErrors(data.errors))
             
         })
-    }  
-
-    const renderErrors = errors.map( e => {
-        return <p key={e} className='error'>{e}</p>
-    })
-
-
-
+    }
     return (
             <div id='form'>
 
                 <h1>Signup</h1>
+                
                 <Form onSubmit={submitSignup}>
-                    <Label>Username</Label>
-                    <Input value={signupObj.username} onChange={e=> updateSignupObj('username', e.target.value)}/>
 
-                    <Label>Password</Label>
-                    <Input value={signupObj.password} type='password' onChange={e=> updateSignupObj('password', e.target.value)}/>
+                    <FormGroup>
+                        <Label>Username</Label>
+                        <Input value={signupObj.username} onChange={e=> updateSignupObj('username', e.target.value)}/>
+                    </FormGroup>
 
-                    <Label>Password</Label>
-                    <Input value={signupObj.password_confirmation} type='password' onChange={e=> updateSignupObj('password_confirmation', e.target.value)}/>
+                    <FormGroup>
+                        <Label>Password</Label>
+                        <Input value={signupObj.password} type='password' onChange={e=> updateSignupObj('password', e.target.value)}/>
+                    </FormGroup>
 
-                <Button color='primary'>Submit</Button>
+                    <FormGroup>
+                        <Label>Confirm Password</Label>
+                        <Input value={signupObj.password_confirmation} type='password' onChange={e=> updateSignupObj('password_confirmation', e.target.value)}/>
+                    </FormGroup>
+
+                    <FormGroup>                
+                        <Button color='primary'>Submit</Button>
+]                   </FormGroup>
 
                 </Form>
 
