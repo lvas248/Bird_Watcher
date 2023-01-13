@@ -1,8 +1,11 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import React, { useState, useEffect } from 'react'
 import Signup from './Signup';
 import Login from './Login';
+import MyNotes from './MyNotes'
+import NoteForm from './NoteForm';
+import Navbar from './Navbar';
+import { Switch, Route } from 'react-router-dom'
 
 
 export const UserContext = React.createContext()
@@ -25,8 +28,28 @@ function App() {
 
       <div className="App">
           <h1>App Home Page</h1>
-          <Login />
-          <Signup />
+          
+          <Navbar />
+          <Switch>
+
+            <Route path='/my-notes'>
+              <MyNotes />
+            </Route>
+
+            <Route path='/new-note'>
+              <NoteForm />
+            </Route>
+
+            <Route path='/login'>
+              <Login />
+            </Route>
+
+            <Route path='/signup'>
+              <Signup />
+            </Route>
+
+          </Switch>
+
 
       </div>
 

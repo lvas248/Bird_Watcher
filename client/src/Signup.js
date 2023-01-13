@@ -67,7 +67,7 @@ function Signup(){
 
                     <FormGroup>                
                         <Button color='primary'>Submit</Button>
-]                   </FormGroup>
+                    </FormGroup>
 
                 </Form>
 
