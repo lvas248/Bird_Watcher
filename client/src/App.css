@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+#form {
+  width: 60%;
+  margin: auto auto;
+  text-align: left;
+  background-color: rgb(251, 251, 251);
+  
+}
